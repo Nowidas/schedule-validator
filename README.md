@@ -4,7 +4,7 @@
 
 Clone repository and install requirements
 ```
-https://github.com/Nowidas/phonebook-fastAPI.git
+https://github.com/Nowidas/schedule-validator
 ```
 
 Install requirements.txt
