@@ -66,7 +66,24 @@ def main() -> None:
     filename = "harmonogram.csv"  # Wprowadź nazwę pliku z harmonogramem
     schedule = read_schedule(filename)
     validation_results = validate_schedule(schedule, month, year, work_start_time)
-    print(validation_results)
+
+    print("=== Wyniki walidacji ===")
+    print(
+        f"Suma godzin w miesiącu większa niż pracowniczych: {validation_results['gt_total_working_hours']}"
+    )
+    print(f"Praca w weekendy: {validation_results['has_weekend_work']}")
+
+    if validation_results["days_overtime"]:
+        print(f"Następujące dni mają nadgodziny:")
+        for day, over_hours in validation_results["days_overtime"]:
+            print(f"Dzień {day} ({over_hours}h)")
+    else:
+        print(f"Brak nadgodzin")
+
+    if validation_results["days_with_insufficient_break"]:
+        print("Następujące dni mają zbyt małą przerwę między sobą:")
+        for day in validation_results["days_with_insufficient_break"]:
+            print(f"Dzień {day} -> {day+1}")
 
 
 if __name__ == "__main__":
