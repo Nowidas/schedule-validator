@@ -1,3 +1,14 @@
+from datetime import datetime
+
+
+def get_working_days_in_month(year, month):
+    num_days = (datetime(year, month + 1, 1) - datetime(year, month, 1)).days
+    working_days = sum(
+        1 for day in range(1, num_days + 1) if datetime(year, month, day).weekday() < 5
+    )
+    return working_days
+
+
 def read_schedule(filename: str) -> dict:
     schedule = {}
     with open(filename, "r") as file:
